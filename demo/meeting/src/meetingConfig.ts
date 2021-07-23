@@ -1,12 +1,12 @@
 // Copyright 2020-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 // SPDX-License-Identifier: Apache-2.0
 
+import { Logger, VideoPriorityBasedPolicy } from 'amazon-chime-sdk-js';
 import { SDK_LOG_LEVELS } from './constants';
 
 const urlParams = new URLSearchParams(window.location.search);
 const queryLogLevel = urlParams.get('logLevel') || 'info';
 const logLevel = SDK_LOG_LEVELS[queryLogLevel] || SDK_LOG_LEVELS.info;
-
 
 const BASE_URL: string = [
   location.protocol,
@@ -23,9 +23,14 @@ const postLogConfig = {
   logLevel: SDK_LOG_LEVELS.info
 };
 
+const videoDownlinkBandwidthPolicyWrapper = (logger: Logger): VideoPriorityBasedPolicy => {
+  return new VideoPriorityBasedPolicy(logger);
+};
+
 const config = {
   logLevel,
-  postLogConfig
+  postLogConfig,
+  videoDownlinkBandwidthPolicyWrapper,
 };
 
 export default config;
