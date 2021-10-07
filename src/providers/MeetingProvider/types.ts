@@ -1,7 +1,14 @@
-// Copyright 2020-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+// Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 // SPDX-License-Identifier: Apache-2.0
 
-import { EventReporter, LogLevel } from 'amazon-chime-sdk-js';
+import {
+  EventReporter,
+  LogLevel,
+  VideoDownlinkBandwidthPolicy,
+  Logger,
+  ActiveSpeakerPolicy,
+  VideoUplinkBandwidthPolicy
+} from 'amazon-chime-sdk-js';
 import { DeviceLabels, DeviceLabelTrigger } from '../../types';
 
 export enum DevicePermissionStatus {
@@ -16,6 +23,7 @@ export interface MeetingJoinData {
   attendeeInfo: any;
   deviceLabels?: DeviceLabels | DeviceLabelTrigger;
   eventReporter?: EventReporter;
+  meetingManagerConfig?: MeetingManagerConfig;
 }
 
 export interface AttendeeResponse {
@@ -40,8 +48,13 @@ export interface PostLogConfig {
   logLevel: LogLevel;
 }
 
-export interface ManagerConfig {
+export interface MeetingManagerConfig {
   logLevel: LogLevel;
   postLogConfig?: PostLogConfig;
   simulcastEnabled?: boolean;
+  enableWebAudio?: boolean;
+  logger?: Logger;
+  activeSpeakerPolicy?: ActiveSpeakerPolicy;
+  videoUplinkBandwidthPolicy?: VideoUplinkBandwidthPolicy;
+  videoDownlinkBandwidthPolicy?: VideoDownlinkBandwidthPolicy;
 }

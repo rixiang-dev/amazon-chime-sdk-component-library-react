@@ -1,4 +1,4 @@
-// Copyright 2020-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+// Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 // SPDX-License-Identifier: Apache-2.0
 
 export type Direction = 'up' | 'right' | 'down' | 'left';
@@ -45,6 +45,8 @@ export enum MeetingStatus {
   Failed,
   Ended,
   JoinedFromAnotherDevice,
+  Left,
+  TerminalFailure
 };
 
 export type RosterAttendeeType = {

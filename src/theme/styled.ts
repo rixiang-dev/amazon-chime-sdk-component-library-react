@@ -1,3 +1,6 @@
+// Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
+// SPDX-License-Identifier: Apache-2.0
+
 import 'styled-components';
 
 interface TextType {
@@ -198,6 +201,7 @@ declare module 'styled-components' {
         itemBgd: string;
         itemText: string;
       };
+      disabled: string;
       separator: string;
     };
 
@@ -223,9 +227,9 @@ declare module 'styled-components' {
       border: string;
       opacity: string | number;
       selected: {
-        text: string,
-        bgd: string,
-      }
+        text: string;
+        bgd: string;
+      };
     };
 
     roster: {
@@ -276,16 +280,16 @@ declare module 'styled-components' {
       outgoing: {
         bgd: string;
         fontColor: string;
-      },
+      };
       incoming: {
         bgd: string;
         fontColor: string;
-      },
+      };
       container: {
         fontColor: string;
         bgd: string;
-      }
-    }
+      };
+    };
 
     messageAttachment: {
       size: {
@@ -294,21 +298,21 @@ declare module 'styled-components' {
         letterSpacing: string;
         lineHight: string;
         fontSize: string;
-      }
+      };
       icon: {
         color: string;
         bgd: string;
-      },
+      };
       name: {
         fontColor: string;
-      }
+      };
       content: {
         letterSpacing: string;
         bgd: string;
         fontColor: string;
-      }
-    }
-    
+      };
+    };
+
     channelList: {
       bgd: string;
       fontColor: string;
@@ -316,26 +320,26 @@ declare module 'styled-components' {
       active: {
         bgd: string;
         fontColor: string;
-      },
+      };
       hover: {
         bgd: string;
-      },
+      };
       focus: {
         border: string;
         selectedBorder: string;
-      },
+      };
       selected: {
         bgd: string;
         fontColor: string;
-      },
+      };
       iconButton: {
         activeBgd: string;
-      }
-    }
+      };
+    };
 
     chatDateHeader: {
       bgd: string;
       fontColor: string;
-    }
+    };
   }
 }

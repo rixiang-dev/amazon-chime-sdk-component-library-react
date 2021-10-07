@@ -1,4 +1,4 @@
-// Copyright 2020-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+// Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 
 # Changelog
 
@@ -11,13 +11,100 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- Fix the issue that `AudioVideoObserver` was not removed as expected in `LocalVideoProvider`.
+- Fix `eventDidReceive` observer removal in `MeetingManager`.
+
+### Added
+
+### Changed
+
+- Update `useSelectVideoInputDevice` hook documentation and usage example.
+
+### Removed
+
+## [2.10.1] - 2021-10-05
+
+### Fixed
+
+### Added
+
+### Removed
+
+- Revert the commit: Add Amazon Voice Focus to default device to fix the breaking issue [#636](https://github.com/aws/amazon-chime-sdk-component-library-react/issues/636)
+
+## [2.10.0] - 2021-09-29
+
+### Fixed
+
+- Fix the issue that Amazon Voice Focus does not get applied on new devices mid-meeting.
+- Fix the issue where we call `meetingManager.leave` an additional time when we call `meetingManager.leave`.
+- Remove the observer in `LocalVideoProvider` when it is unmounted to fix memory leak.
+
+### Added
+
+- Add `activeSpeakerPolicy` and `videoUplinkBandwidthPolicy` in `MeetingManagerConfig` to allow builders to pass in custom policies.
+- For more flexibility, allow passing `MeetingManagerConfig` to `meetingManager.join` method. Passing the config here would override config passed through `MeetingProvider` props.
+- Add more details in the `AudioInputProvider` on storybook.
+- Add `MeetingStatus.Left` and set it when explicitly leaving the meeting.
+- Publish `MeetingStatus.Failed` when `audioVideoDidStop` gets triggered with one of the Failure types of `MeetingSessionStatus`.
+- Add `Terminal Failure` Meeting Status.
+
+### Changed
+
+- Remove the audio video observers in the `audioVideoDidStop()` function instead of `leave()` function in the `MeetingManager`.
+- Update `VoiceFocusProvider` and `useVoiceFocus` documentation in the storybook.
+
+### Removed
+
+- Remove setting the `MeetingStatus` to `MeetingStatus.Loading` when we call `meetingManager.leave`.
+
+## [2.9.1] - 2021-09-02
+
+### Fixed
+
+### Added
+
+### Changed
+
+- Remove the year in the copy right checker.
+
+### Removed
+
+## [2.9.0] - 2021-08-28
+
+### Fixed
+
+### Added
+
+- Add [MeetingEventProvider](https://aws.github.io/amazon-chime-sdk-component-library-react/?path=/story/sdk-providers-meetingeventprovider--page) and [useMeetingEvent](https://aws.github.io/amazon-chime-sdk-component-library-react/?path=/story/sdk-hooks-usemeetingevent--page) hook to receive meeting events from `amazon-chime-sdk-js`. Please check [Amazon Chime SDK for JavaScript meeting events guide](https://aws.github.io/amazon-chime-sdk-js/modules/meetingevents.html) for more information on meeting events.
+- Add optional parameter `enableWebAudio: boolean` in the config of meeting manager to decide whether to enable Web Audio in the device controller.
+- Extend the ability to accept `Device` and `AudioTransformDevice` as audio input in meeting manager.
+- Add a new provider [VoiceFocusProvider](https://aws.github.io/amazon-chime-sdk-component-library-react/?path=/story/sdk-providers-voicefocusprovider--page) to initialize noise suppression and transform a normal audio input device to an Amazon Voice Focus transform device.
+- Add a new UI component [AudioInputVFControl](https://aws.github.io/amazon-chime-sdk-component-library-react/?path=/story/sdk-components-meetingcontrols-audioinputvfcontrol--page) to provide Amazon Voice Focus option to users.
+- Add CSS for `disabled` props on `PopOverItem`.
+- [Doc] Add documentation for `AudioInputVFControl` component within `MeetingControls` in the story book.
+- [Doc] Add documentation for `VoiceFocusProvider` provider in the story book.
+- [Doc] Add documentation for [useVoiceFocus](https://aws.github.io/amazon-chime-sdk-component-library-react/?path=/story/sdk-hooks-usevoicefocus--page) hook in the story book.
+
+### Changed
+
+- Change the input type of `useSelectAudioInputDevice` hook from string to `Device` and `AudioTransformDevice`.
+- Add `meetingManagerConfig: ManagerConfig` object to `MeetingManager` and use it in `initializeMeetingSession` method. We will use values from `meetingManagerConfig: ManagerConfig` directly instead of class level variables.
+
+### Removed
+
+## [2.8.0] - 2021-07-28
+
+### Fixed
+
 - Exclude the uuid module from the Rollup bundle so that the Chime SDK React Components Library uses the uuid module from the builder's node_modules.
 - [Doc] Fix the broken hyperlinks in storybook and slightly improve the storybook.
 
 ### Added
 
 - Add optional parameter `deviceLabels: DeviceLabels | DeviceLabelTrigger` in `meetingManager.listAndSelectDevices()` to let builder indicate the type of devices they want to select.
-- Add several how-to docs in storybook.
+- Add optional parameter `logger` and `videoDownlinkBandwidthPolicy` in `ManagerConfig` to pass in the `Logger` object and `VideoDownlinkBandwidthPolicy` object that you want to be used in the meeting session.
+- [Doc] Add several how-to docs in storybook.
 
 ### Changed
 
@@ -27,8 +114,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 
 - Migrate Meeting Demo app to amazon-chime-sdk repo under aws-sample. The new meeting demo is [here](https://github.com/aws-samples/amazon-chime-sdk/tree/main/apps/meeting).
-
-### Removed
 
 ## [2.7.0] - 2021-07-14
 
